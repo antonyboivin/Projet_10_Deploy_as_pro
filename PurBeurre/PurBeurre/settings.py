@@ -135,3 +135,7 @@ STATICFILES_DIRS = [
 
 # Variable pour le processeur de contexte debug():
 INTERNAL_IPS = ['127.0.0.1']
+
+
+# MEDIA_ROOT
+#MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
