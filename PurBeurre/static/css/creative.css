@@ -49,9 +49,10 @@ h6 {
 .text-faded {
   color: rgba(255, 255, 255, 0.7);
 }
-
+/* MODIF */
 section {
   padding: 8rem 0;
+  background-color: #E8A75D;
 }
 
 .section-heading {
@@ -92,12 +93,12 @@ img::-moz-selection {
 #mainNav .navbar-brand {
   font-weight: 700;
   text-transform: uppercase;
-  color: #F05F40;
+  color: #DE9440;
   font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
 }
 
 #mainNav .navbar-brand:focus, #mainNav .navbar-brand:hover {
-  color: #f05f40;
+  color: #E8A75D;
 }
 
 #mainNav .navbar-nav > li.nav-item > a.nav-link,
@@ -127,34 +128,36 @@ img::-moz-selection {
 @media (min-width: 992px) {
   #mainNav {
     border-color: transparent;
-    background-color: transparent;
+    background-color: #345A61;
   }
+  /*Brand color*/
   #mainNav .navbar-brand {
-    color: rgba(255, 255, 255, 0.7);
+    color: #DE9440;
   }
   #mainNav .navbar-brand:focus, #mainNav .navbar-brand:hover {
-    color: #fff;
+    color: #E8A75D;
   }
   #mainNav .navbar-nav > li.nav-item > a.nav-link {
     padding: 0.5rem 1rem;
   }
   #mainNav .navbar-nav > li.nav-item > a.nav-link,
   #mainNav .navbar-nav > li.nav-item > a.nav-link:focus {
-    color: rgba(255, 255, 255, 0.7);
+    color: #DE9440;
   }
   #mainNav .navbar-nav > li.nav-item > a.nav-link:hover,
   #mainNav .navbar-nav > li.nav-item > a.nav-link:focus:hover {
-    color: #fff;
+    color: #E8A75D;
   }
   #mainNav.navbar-shrink {
     border-bottom: 1px solid rgba(33, 37, 41, 0.1);
-    background-color: #fff;
+    /*background-color: #fff;*/
+    background-color: #345A61;
   }
   #mainNav.navbar-shrink .navbar-brand {
-    color: #F05F40;
+    color: #DE9440;
   }
   #mainNav.navbar-shrink .navbar-brand:focus, #mainNav.navbar-shrink .navbar-brand:hover {
-    color: #f05f40;
+    color: #DE9440;
   }
   #mainNav.navbar-shrink .navbar-nav > li.nav-item > a.nav-link,
   #mainNav.navbar-shrink .navbar-nav > li.nav-item > a.nav-link:focus {
@@ -162,10 +165,11 @@ img::-moz-selection {
   }
   #mainNav.navbar-shrink .navbar-nav > li.nav-item > a.nav-link:hover,
   #mainNav.navbar-shrink .navbar-nav > li.nav-item > a.nav-link:focus:hover {
-    color: #F05F40;
+    color: #DE9440;
   }
 }
 
+/* header main page */
 header.masthead {
   padding-top: 10rem;
   padding-bottom: calc(10rem - 56px);
@@ -184,15 +188,21 @@ header.masthead hr {
 
 header.masthead h1 {
   font-size: 2rem;
+  color: #C45525;
+  text-shadow: 2px 2px #212529;
 }
 
 header.masthead p {
   font-weight: 300;
+  color: #C45525;
+  text-shadow: 2px 2px #212529;
 }
 
 @media (min-width: 768px) {
   header.masthead p {
-    font-size: 1.15rem;
+    font-size: 2rem;
+    color: #C45525;
+    text-shadow: 2px 2px #212529;
   }
 }
 
@@ -309,4 +319,8 @@ header.masthead p {
 
 .btn-primary:active, .btn-primary:focus {
   box-shadow: 0 0 0 0.2rem rgba(240, 95, 64, 0.5) !important;
+}
+
+#logo {
+  margin-right: 10%;  
 }

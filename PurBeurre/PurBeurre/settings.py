@@ -59,6 +59,7 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             # Add templates/ folder to the root. It contains project-specific templates
+            os.path.join(BASE_DIR, 'templates')
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -77,6 +78,13 @@ WSGI_APPLICATION = 'PurBeurre.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
+""",
+    'PurBeurre': {
+        'ENGINE': 'django.db.backends.mysql', # Adaptateur postgresql
+        'NAME': 'offProject', # Nom de la base de donnees
+        'USER': 'root', # Nom d'utilisateur
+        'PASSWORD': 'toor',
+    },"""
 
 DATABASES = {
     'default': {
@@ -139,3 +147,6 @@ INTERNAL_IPS = ['127.0.0.1']
 
 # MEDIA_ROOT
 #MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
+# Redirection vers la vue de connection pour le décorateur @login_required
+LOGIN_URL = '/connection/'

@@ -127,7 +127,7 @@ img::-moz-selection {
 @media (min-width: 992px) {
   #mainNav {
     border-color: transparent;
-    background-color: white;
+    background-color: #345A61;
   }
   /*Brand color*/
   #mainNav .navbar-brand {
@@ -149,7 +149,7 @@ img::-moz-selection {
   }
   #mainNav.navbar-shrink {
     border-bottom: 1px solid rgba(33, 37, 41, 0.1);
-    background-color: #fff;
+    background-color: #345A61;
   }
   #mainNav.navbar-shrink .navbar-brand {
     color: #DE9440;
@@ -167,10 +167,11 @@ img::-moz-selection {
   }
 }
 
+/* header main page */
 header.masthead {
   padding-top: 10rem;
   padding-bottom: calc(10rem - 56px);
-  background-image: url("../img/header.jpg");
+  /*background-image: url("../img/header.jpg");*/
   background-position: center center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -220,7 +221,63 @@ header.masthead p {
     font-size: 4rem;
   }
 }
+/* header account */
+header.accounthead {
+  padding-top: 10rem;
+  padding-bottom: calc(10rem - 56px);
+  background-image: url("../img/account.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  /*background-position: center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover; */ 
+  background-size: cover;
+}
 
+header.accounthead hr {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+header.accounthead h1 {
+  font-size: 2rem;
+  color: #C45525;
+  text-shadow: 2px 2px #212529;
+}
+
+header.accounthead p {
+  font-weight: 300;
+  color: #C45525;
+  text-shadow: 2px 2px #212529;
+}
+
+@media (min-width: 768px) {
+  header.accounthead p {
+    font-size: 2rem;
+    color: #C45525;
+    text-shadow: 2px 2px #212529;
+  }
+}
+
+@media (min-width: 992px) {
+  header.accounthead {
+    /*height: 100vh;*/
+    min-height: 650px;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  header.accounthead h1 {
+    font-size: 3rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  header.accounthead h1 {
+    font-size: 4rem;
+  }
+}
+*/
 .service-box {
   max-width: 400px;
 }

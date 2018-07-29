@@ -1,6 +1,31 @@
-{% extends 'substitution_app/base.html' %}
+{% extends 'base.html' %}
 {% load static %}
+
+{% block css %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'substitution_app/css/creative.css' %}" /> <!-- MODIFIED -->
+{% endblock %}
+
+
+
     {% block body %}
+
+    <header class="masthead text-center text-white d-flex">
+      <div class="container my-auto">
+        <div class="row">
+          <div class="col-lg-10 mx-auto">
+            <h1 class="text-uppercase">
+              <strong>Du gras ??!, oui !, mais de la qualité !</strong>
+            </h1>
+            <hr>
+          </div>
+          <div class="col-lg-8 mx-auto">
+            <p class="text-faded mb-5">Trouvez un produit de substitution pour ceux que vous consommez tous les jours.</p>
+            <a class="btn btn-primary btn-xl js-scroll-trigger" href="#about">Find Out More</a>
+          </div>
+        </div>
+      </div>
+    </header>
 
     <section id="services">
             <div class="container">
@@ -18,7 +43,7 @@
                 <div class="col-lg-6 col-md-12 text-center">
                   <div class="service-box mt-5 mx-auto">
                     <!-- <i class="fa fa-4x fa-paper-plane text-primary mb-3 sr-icons"></i> -->
-                    <img src="{% static 'substitution_app/img/colette_tatou.png' %}" title="Colette Tatou" alt="Colette Tatou">
+                    <img src="{% static 'img/colette_tatou.png' %}" title="Colette Tatou" alt="Colette Tatou">
                     <h3 class="mb-3">Colette Tatou</h3>
                     <p class="text-muted mb-0">"Nous aimons tous manger, surtout en France ! Personnellement, une baguette fraîche, du bon fromage de chèvre et un bon vin rouge me suffisent amplement. Comme tout le monde, je fais mes courses au supermarché. Mais petit à petit je me suis rendue compte, surtout lorsque nous avons ouvert le restaurant, que je pouvais remplacer les produits aseptisés que j'avais l'habitude d'acheter par de bons produits du terroir Et souvent pour le même prix !"</p>
                   </div>
@@ -26,7 +51,7 @@
                 <div class="col-lg-6 col-md-12 text-center">
                   <div class="service-box mt-5 mx-auto">
                     <!-- <i class="fa fa-4x fa-newspaper-o text-primary mb-3 sr-icons"></i> -->
-                    <img src="{% static 'substitution_app/img/ratatouille.png' %}" title="Ratatouille" alt="Ratatouille">
+                    <img src="{% static 'img/ratatouille.png' %}" title="Ratatouille" alt="Ratatouille">
                     <h3 class="mb-3">Remy</h3>
                     <p class="text-muted mb-0">"Pour ma part je me rendais déjà dans bien des magasins car j'aime beaucoup me balader, surtout dans les caves et les cuisines. Je connaissais par coeur le contenu des boutiques bio (dont je raffole) ainsi que les ingrédients de tous les aliments vendus. Lorsque Colette m'a demandé si elle pouvait remplacer son Nutella matinal par un aliment plus sain, je savais tout de suite où le trouver. L'idée de Pur Beurre était née !"</p>
                   </div>
