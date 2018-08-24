@@ -1,3 +1,4 @@
+
 body,
 html {
   width: 100%;
@@ -296,6 +297,9 @@ header.masthead p {
 }
 
 .btn {
+  display: inline-block;
+  padding: .5rem .5rem;
+  font-size: .875rem;
   font-weight: 700;
   text-transform: uppercase;
   border: none;
@@ -323,4 +327,20 @@ header.masthead p {
 
 #logo {
   margin-right: 10%;  
+}
+
+/* button navigation */
+
+#form-nav-search {
+  display: flex;
+  direction: row;
+}
+
+.clearfix {
+  padding-bottom: 40px;
+  
+}
+
+.resultFirstLine {
+  padding-top: 5rem;
 }

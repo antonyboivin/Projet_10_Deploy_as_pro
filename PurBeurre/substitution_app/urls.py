@@ -8,4 +8,6 @@ urlpatterns = [
     path('connection/', views.connection, name='connection'),
     path('deconnection/', views.deconnection, name='deconnection'),
     path('myaccount/', views.myaccount, name='my account'),
+    path('product_select/', views.product_select, name='product select'),
+    path('results/<int:code>', views.results, name='results'),
 ]
