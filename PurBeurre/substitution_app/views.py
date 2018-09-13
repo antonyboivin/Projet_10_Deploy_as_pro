@@ -7,7 +7,7 @@ from .forms import SignUpForm, ConnectionForm
 
 from . import callapi
 
-
+import json
 
 def home_page(request):
     return render(request, 'substitution_app/home_page.html')
@@ -80,5 +80,17 @@ def results(request, code):
         raise Http404("Erreur 404")
     else:
         apiQuery = callapi.barcode_clean_the_oppenfoodfact_api_request(apiQuery)
+        substitution = callapi.request_for_substitution_products_in_openfoodfact_api(apiQuery)
+        substitution = callapi.clean_substitution_products_in_openfoodfact_api(substitution)
 
-    return render(request, 'substitution_app/results.html', {'apiQuery': apiQuery})
+    return render(request, 'substitution_app/results.html', {'apiQuery': apiQuery, 'substitution': substitution})
+
+
+def product_display(request, code):
+    apiQuery = callapi.barcode_request_the_openfoodfact_api(code)
+    if apiQuery == 404:
+        raise Http404("Erreur 404")
+    else:
+        apiQuery = callapi.barcode_clean_the_oppenfoodfact_api_request(apiQuery)
+
+    return render(request, 'substitution_app/product_display.html', {'apiQuery': apiQuery})

@@ -15,7 +15,7 @@
           </h1>
           <hr>
           <h1 class="text-uppercase">
-          <a href="{% url 'home page' %}">{# changer pour nouvelle recherche #}
+          <a href="{% url 'product display' apiQuery.code %}">
             <img class="img-responsive" src="{{ apiQuery.image_small_url }}" alt="{{ apiQuery.product_name_fr }}">
           </a>
           <strong>{{ apiQuery.product_name_fr }}</strong>
@@ -28,7 +28,18 @@
   </header>
 
   <body>
-
+    {% for item in substitution %}
+        {% if forloop.first %}<div class="row resultFirstLine">{% endif %}
+          <div class="col-sm-4 text-center">
+            <a href="{% url 'product display' apiQuery.code %}">
+              <img class="img-responsive" src="{{ item.image_small_url }}" alt="{{ item.product_name_fr }}">
+            </a>
+            <p>{{ item.product_name_fr }}</p>
+              {% if forloop.counter|divisibleby:'3' %}<div class="clearfix"></div>{% endif %}
+          </div>
+        {% if forloop.counter|divisibleby:3 %}</div><div class="row">{% endif %}
+        {% if forloop.last %}</div>{% endif %}
+    {% endfor %}
   </body>
 {% endblock %}
 
@@ -40,7 +51,7 @@
         {% if item.code == "0" %}
           <div class="row ">
             <div class="col-sm-3 text-center">
-              <a href="{% url 'results' item.code %}">{# changer pour nouvelle recherche #}
+              <a href="{% url 'results' item.code %}">
                 <img class="img-responsive" src="{% static 'substitution_app/img/not_found_product.png' %}" alt="Produit introuvable">
               </a>
             </div>

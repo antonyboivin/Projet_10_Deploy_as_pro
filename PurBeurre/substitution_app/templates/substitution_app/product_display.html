@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+{% block body %}
+{% block css %}
+  <link rel="stylesheet" type="text/css" href="{% static 'substitution_app/css/creative.css' %}" /> <!-- MODIFIED -->
+{% endblock %}
+
+  <header class="product_display text-center text-white d-flex">
+    <div class="container my-auto">
+      <div class="row">
+        <div class="col-lg-10 mx-auto">
+          <h1 class="text-uppercase">
+            <strong>{{ apiQuery.code }}</strong>
+          </h1>
+          <hr>
+          <h1 class="text-uppercase">
+            <strong>{{ apiQuery }}</strong>
+            <p>RECUPERER L'IMAGE NUTRISCORE</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <body>
+
+  </body>
+
+
+
+{% endblock %}
+
+
+
+
+    {% comment %}
+
+    {% endcomment %}
+

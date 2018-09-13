@@ -10,4 +10,5 @@ urlpatterns = [
     path('myaccount/', views.myaccount, name='my account'),
     path('product_select/', views.product_select, name='product select'),
     path('results/<int:code>', views.results, name='results'),
+    path('product_display/<int:code>', views.product_display, name='product display'),
 ]
