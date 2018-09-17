@@ -109,11 +109,11 @@ def barcode_clean_the_oppenfoodfact_api_request(response):
         if len(products["categories"]) > 0 and len(products["categories_hierarchy"]) > 0: #  
             results.append(products.copy())
             results = results[0]
+
             
     except KeyError:
         pass
 
-    print(results)
     return results
 
 
@@ -137,14 +137,15 @@ def request_for_substitution_products_in_openfoodfact_api(apiquery):
     # Determinations of the build parameters of the query.
     payload = {
         'action' : 'process',
+        'search_terms' : apiquery["categories_hierarchy"][0][3:],
         # First criteria
-        'tagtype_0' : 'categories',
-        'tag_contains_0' : 'contains',
-        'tag_0' : apiquery["categories_hierarchy"][0],#apiquery["categories_hierarchy"][0], #apiquery["categories"]
-        # Second criteria
+        'tagtype_0' : 'nutrition_grades',
+        'tag_contains_0':'contains',
+        'tag_0' : 'a',
+        # Third criteria
         'tagtype_1' : 'nutrition_grades',
         'tag_contains_1':'contains',
-        'tag_1' : 'a',
+        'tag_1' : 'b',
 
 
 

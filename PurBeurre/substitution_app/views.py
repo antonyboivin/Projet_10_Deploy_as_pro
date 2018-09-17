@@ -4,6 +4,7 @@ from django.urls import reverse
 from django.http import Http404
 
 from .forms import SignUpForm, ConnectionForm
+from .models import ProductsA
 
 from . import callapi
 
@@ -74,16 +75,25 @@ def product_select(request):
         return render(request, 'substitution_app/product_select.html', {'apiQuery': apiQuery, 'userQuery' : userQuery})
 
 
+##
 def results(request, code):
+    # substitution = ProductsA.objects.filter(title__contains=query)
     apiQuery = callapi.barcode_request_the_openfoodfact_api(code)
+    apiQuery = callapi.barcode_clean_the_oppenfoodfact_api_request(apiQuery)
+
     if apiQuery == 404:
         raise Http404("Erreur 404")
     else:
-        apiQuery = callapi.barcode_clean_the_oppenfoodfact_api_request(apiQuery)
-        substitution = callapi.request_for_substitution_products_in_openfoodfact_api(apiQuery)
-        substitution = callapi.clean_substitution_products_in_openfoodfact_api(substitution)
+        categorie = apiQuery['categories_hierarchy'][0]
+        substitution = ProductsA.objects.filter(main_category__contains=categorie)        
+        if substitution.exists():
+            return render(request, 'substitution_app/results.html', {'apiQuery': apiQuery, 'substitution': substitution})
+        else:
+            substitution = callapi.request_for_substitution_products_in_openfoodfact_api(apiQuery)
+            substitution = callapi.clean_substitution_products_in_openfoodfact_api(substitution)
 
-    return render(request, 'substitution_app/results.html', {'apiQuery': apiQuery, 'substitution': substitution})
+            return render(request, 'substitution_app/results.html', {'apiQuery': apiQuery, 'substitution': substitution})
+##
 
 
 def product_display(request, code):
@@ -94,3 +104,38 @@ def product_display(request, code):
         apiQuery = callapi.barcode_clean_the_oppenfoodfact_api_request(apiQuery)
 
     return render(request, 'substitution_app/product_display.html', {'apiQuery': apiQuery})
+
+"""
+def results(request, code):
+    # substitution = ProductsA.objects.filter(title__contains=query)
+    apiQuery = callapi.barcode_request_the_openfoodfact_api(code)
+    if apiQuery == 404:
+        raise Http404("Erreur 404")
+    else:
+        apiQuery = callapi.barcode_clean_the_oppenfoodfact_api_request(apiQuery)
+        print(apiQuery['categories_hierarchy'][0][3:])
+        substitution = callapi.request_for_substitution_products_in_openfoodfact_api(apiQuery)
+        substitution = callapi.clean_substitution_products_in_openfoodfact_api(substitution)
+
+    return render(request, 'substitution_app/results.html', {'apiQuery': apiQuery, 'substitution': substitution})
+
+
+def results(request, code):
+    # substitution = ProductsA.objects.filter(title__contains=query)
+    apiQuery = callapi.barcode_request_the_openfoodfact_api(code)
+    apiQuery = callapi.barcode_clean_the_oppenfoodfact_api_request(apiQuery)
+
+    if apiQuery == 404:
+        raise Http404("Erreur 404")
+    else:
+        try:
+            categorie = apiQuery['categories_hierarchy'][0]
+            substitution = ProductsA.objects.filter(main_category__contains=categorie)
+            print(substitution)
+            return render(request, 'substitution_app/results.html', {'apiQuery': apiQuery, 'substitution': substitution})
+        except :
+            substitution = callapi.request_for_substitution_products_in_openfoodfact_api(apiQuery)
+            substitution = callapi.clean_substitution_products_in_openfoodfact_api(substitution)
+
+            return render(request, 'substitution_app/results.html', {'apiQuery': apiQuery, 'substitution': substitution})
+"""
