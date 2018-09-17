@@ -1,5 +1,10 @@
 .vscode/
-ENV/
-tools/
 
+ENV/
+
+PurBeurre/__pycache__
+substitution_app/__pycache__/
+substitution_app/migrations/__pycache__/
+
+tools/
 Notes de projet.md
