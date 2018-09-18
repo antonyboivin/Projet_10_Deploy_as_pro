@@ -26,7 +26,7 @@ SECRET_KEY = ')7pb-xz9&-^w$$mnmpvpg03*tp3l2@%c2_)zkipu)9l)$x!nn+'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 if os.environ.get('ENV') == 'PRODUCTION':
-    DEBUG = False
+    DEBUG = True
 else:
     DEBUG = True
 
@@ -172,6 +172,7 @@ if os.environ.get('ENV') == 'PRODUCTION':
     # Simplified static file serving.
     # https://warehouse.python.org/project/whitenoise/
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+    
     
     db_from_env = dj_database_url.config(conn_max_age=500)
     DATABASES['default'].update(db_from_env)

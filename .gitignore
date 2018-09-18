@@ -3,6 +3,7 @@
 ENV/
 
 PurBeurre/__pycache__
+PurBeurre/__pycache__/settings.cpython-36.pyc
 substitution_app/__pycache__/
 substitution_app/migrations/__pycache__/
 
