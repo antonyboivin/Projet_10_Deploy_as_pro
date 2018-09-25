@@ -2,6 +2,8 @@
 import requests
 import json
 
+from django.http import Http404
+
 
 def request_the_openfoodfact_api(query):
     """
@@ -44,7 +46,7 @@ def clean_the_openfoodfact_api_request(response):
 
         for item in items:
             try:
-                products["product_name_fr"] = item["product_name_fr"]
+                products["product_name"] = item["product_name_fr"]
                 products["code"]  = item["code"]
                 products["nutrition_grade_fr"] = item["nutrition_grade_fr"]
                 products["categories_hierarchy"] = [categorie for categorie in item["categories_hierarchy"] if categorie[0:2] == 'fr']
@@ -62,13 +64,11 @@ def clean_the_openfoodfact_api_request(response):
    
     else:
         """
-        [{'product_name_fr': '', 'code': '', 'nutrition_grade_fr': '', 'categories_hierarchy': '',
-         'categories': '', 'image_small_url': ''}
-        """
         results = [{'product_name_fr': 'Désolé, le produit demandé est introuvable', 'code': '0', 'nutrition_grade_fr': '', 'categories_hierarchy': '',
          'categories': '', 'image_small_url': ''}]
         return results
-
+        """
+        raise Http404
 
 def barcode_request_the_openfoodfact_api(barcode):
     """
@@ -93,11 +93,10 @@ def barcode_clean_the_oppenfoodfact_api_request(response):
     results = []
     products = {}
 
-    items = response["product"]
-
-
     try:
-        products["product_name_fr"] = items["product_name_fr"]
+        items = response["product"]
+
+        products["product_name"] = items["product_name_fr"]
         products["code"]  = items["code"]
         products["nutrition_grade_fr"] = items["nutrition_grade_fr"]
         products["categories_hierarchy"] = [categorie for categorie in items["categories_hierarchy"] if categorie[0:2] == 'fr']
@@ -106,13 +105,13 @@ def barcode_clean_the_oppenfoodfact_api_request(response):
         products["image_small_url"] = items["image_small_url"]
         
 
-        if len(products["categories"]) > 0 and len(products["categories_hierarchy"]) > 0: #  
+        if len(products["categories"]) > 0 and len(products["categories_hierarchy"]) > 0:  
             results.append(products.copy())
             results = results[0]
 
             
     except KeyError:
-        pass
+        raise Http404
 
     return results
 
@@ -175,7 +174,7 @@ def clean_substitution_products_in_openfoodfact_api(apiquery):
 
         for item in items:
             try:
-                products["product_name_fr"] = item["product_name_fr"]
+                products["product_name"] = item["product_name_fr"]
                 products["code"]  = item["code"]
                 products["nutrition_grade_fr"] = item["nutrition_grade_fr"]
                 products["categories_hierarchy"] = [categorie for categorie in item["categories_hierarchy"] if categorie[0:2] == 'fr']
@@ -188,14 +187,12 @@ def clean_substitution_products_in_openfoodfact_api(apiquery):
                     
             except KeyError:
                 pass
-                
-        return results
+
+        if len(results) > 0:               
+            return results
    
-    else:
-        """
-        [{'product_name_fr': '', 'code': '', 'nutrition_grade_fr': '', 'categories_hierarchy': '',
-         'categories': '', 'image_small_url': ''}
-        """
-        results = [{'product_name_fr': 'Désolé, le produit demandé est introuvable', 'code': '0', 'nutrition_grade_fr': '', 'categories_hierarchy': '',
-         'categories': '', 'image_small_url': ''}]
-        return results
+        else:
+            raise Http404
+
+
+

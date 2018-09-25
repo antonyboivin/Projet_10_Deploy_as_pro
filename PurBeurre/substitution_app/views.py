@@ -4,7 +4,7 @@ from django.urls import reverse
 from django.http import Http404
 
 from .forms import SignUpForm, ConnectionForm
-from .models import ProductsA
+from .models import ProductsA, UserProducts
 
 from . import callapi
 
@@ -75,9 +75,7 @@ def product_select(request):
         return render(request, 'substitution_app/product_select.html', {'apiQuery': apiQuery, 'userQuery' : userQuery})
 
 
-##
 def results(request, code):
-    # substitution = ProductsA.objects.filter(title__contains=query)
     apiQuery = callapi.barcode_request_the_openfoodfact_api(code)
     apiQuery = callapi.barcode_clean_the_oppenfoodfact_api_request(apiQuery)
 
@@ -93,7 +91,31 @@ def results(request, code):
             substitution = callapi.clean_substitution_products_in_openfoodfact_api(substitution)
 
             return render(request, 'substitution_app/results.html', {'apiQuery': apiQuery, 'substitution': substitution})
-##
+    
+
+def my_products(request):
+    user_products = UserProducts.objects.all() 
+    context = {
+        'user_products' : user_products
+    }
+    if request.method == 'POST':
+        if request.user.is_authenticated:
+            username = request.user.username
+            code = request.POST.get('code')
+            url = request.POST.get('url')
+            product_name = request.POST.get('product_name')
+            nutrition_grade_fr = request.POST.get('nutrition_grade_fr')
+            main_category = request.POST.get('main_category')
+            main_category_fr = request.POST.get('main_category_fr')
+            image_small_url = request.POST.get('image_small_url')
+
+            return render(request, 'substitution_app/myproducts.html', context)
+    else:
+        if request.user.is_authenticated:
+            print(request.user.username)
+            return render(request, 'substitution_app/myproducts.html', context)
+        else:
+            return redirect(connection)
 
 
 def product_display(request, code):
@@ -106,36 +128,24 @@ def product_display(request, code):
     return render(request, 'substitution_app/product_display.html', {'apiQuery': apiQuery})
 
 """
-def results(request, code):
-    # substitution = ProductsA.objects.filter(title__contains=query)
-    apiQuery = callapi.barcode_request_the_openfoodfact_api(code)
-    if apiQuery == 404:
-        raise Http404("Erreur 404")
+def my_products(request):
+    if request.user.is_authenticated:
+        return render(request, 'substitution_app/myproducts.html')
     else:
-        apiQuery = callapi.barcode_clean_the_oppenfoodfact_api_request(apiQuery)
-        print(apiQuery['categories_hierarchy'][0][3:])
-        substitution = callapi.request_for_substitution_products_in_openfoodfact_api(apiQuery)
-        substitution = callapi.clean_substitution_products_in_openfoodfact_api(substitution)
-
-    return render(request, 'substitution_app/results.html', {'apiQuery': apiQuery, 'substitution': substitution})
+        return redirect(connection)
 
 
-def results(request, code):
-    # substitution = ProductsA.objects.filter(title__contains=query)
-    apiQuery = callapi.barcode_request_the_openfoodfact_api(code)
-    apiQuery = callapi.barcode_clean_the_oppenfoodfact_api_request(apiQuery)
-
-    if apiQuery == 404:
-        raise Http404("Erreur 404")
-    else:
-        try:
-            categorie = apiQuery['categories_hierarchy'][0]
-            substitution = ProductsA.objects.filter(main_category__contains=categorie)
-            print(substitution)
-            return render(request, 'substitution_app/results.html', {'apiQuery': apiQuery, 'substitution': substitution})
-        except :
-            substitution = callapi.request_for_substitution_products_in_openfoodfact_api(apiQuery)
-            substitution = callapi.clean_substitution_products_in_openfoodfact_api(substitution)
-
-            return render(request, 'substitution_app/results.html', {'apiQuery': apiQuery, 'substitution': substitution})
+           
+            products_save = UserProducts.objects.create(
+                username = username,
+                code = code,
+                url = url,
+                product_name = product_name,
+                nutrition_grade_fr = nutrition_grade_fr,
+                main_category = main_category,
+                main_category_fr = main_category_fr,
+                image_small_url = image_small_url
+        )
 """
+
+

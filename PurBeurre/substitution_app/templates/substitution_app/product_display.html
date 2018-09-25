@@ -13,18 +13,41 @@
       <div class="row">
         <div class="col-lg-10 mx-auto">
           <h1 class="text-uppercase">
-            <strong>{{ apiQuery.code }}</strong>
+            <strong>{{ apiQuery.product_name_fr }}</strong>
           </h1>
           <hr>
           <h1 class="text-uppercase">
-            <strong>{{ apiQuery }}</strong>
-            <p>RECUPERER L'IMAGE NUTRISCORE</p>
+            <img class="img-responsive" src="{{ apiQuery.image_small_url }}" alt="{{ apiQuery.product_name_fr }}">
         </div>
       </div>
     </div>
   </header>
 
   <body>
+      <div>
+        <div>
+          {% if apiQuery.nutrition_grade_fr == 'a' %}
+            <img class="img-responsive" src="{% static 'substitution_app/img/nutriscore_A.png' %}" alt="{{ apiQuery.nutrition_grade_fr }}">
+          {% elif apiQuery.nutrition_grade_fr == 'b' %}
+            <img class="img-responsive" src="{% static 'substitution_app/img/nutriscore_B.png' %}" alt="{{ apiQuery.nutrition_grade_fr }}">
+          {% elif apiQuery.nutrition_grade_fr == 'c' %}
+            <img class="img-responsive" src="{% static 'substitution_app/img/nutriscore_C.png' %}" alt="{{ apiQuery.nutrition_grade_fr }}">
+          {% elif apiQuery.nutrition_grade_fr == 'd' %}
+            <img class="img-responsive" src="{% static 'substitution_app/img/nutriscore_D.png' %}" alt="{{ apiQuery.nutrition_grade_fr }}">
+          {% elif apiQuery.nutrition_grade_fr == 'e' %}
+            <img class="img-responsive" src="{% static 'substitution_app/img/nutriscore_E.png' %}" alt="{{ apiQuery.nutrition_grade_fr }}">     
+          {% else %}
+          
+          {% endif %}
+        </div>
+        <div>
+          <p>repères nutritionnels pour 100g</p>
+        </div>
+      </div>
+      <div>
+        <a href="https://fr.openfoodfacts.org/produit/{{ apiQuery.code }}" target="_blank">Voir la fiche produit d'Open Food Facts</a>
+      </div>
+    
 
   </body>
 

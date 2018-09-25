@@ -592,4 +592,9 @@ header.masthead p {
 
 .resultFirstLine {
   padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+.test {
+  text-align: center;
 }
