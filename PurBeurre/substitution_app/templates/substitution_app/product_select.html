@@ -5,7 +5,7 @@
 
 {% block body %}
 {% block css %}
-  <link rel="stylesheet" type="text/css" href="{% static 'substitution_app/css/creative.css' %}" /> <!-- MODIFIED -->
+  <link rel="stylesheet" type="text/css" href="{% static 'substitution_app/css/creative.css' %}" />
 {% endblock %}
 
   <header class="product_selecthead text-center text-white d-flex">
@@ -24,42 +24,32 @@
   </header>
 
   <body>
-    {% for item in apiQuery %}
-      {% if item.code == "0" %}
-        <div class="row ">
-          <div class="col-sm-3 text-center">
-            <a href="{% url 'results' item.code %}">
-              <img class="img-responsive" src="{% static 'substitution_app/img/not_found_product.png' %}" alt="Produit introuvable">
-            </a>
-          </div>
-           <div class="col-sm-9 text-center not_found_message">
-            <p>Quelle misère..., le produit demandé est introuvable</p>
-            <p>Essayez de vérifier l'orthographe du produit recherché</p>
-          </div>
+  {% for item in apiQuery %}
+    {% if item.code == "0" %}
+      <div class="row ">
+        <div class="col-sm-3 text-center">
+          <a href="{% url 'results' item.code %}">
+            <img class="img-responsive" src="{% static 'substitution_app/img/not_found_product.png' %}" alt="Produit introuvable">
+          </a>
         </div>
-      {% else %}
-        {% if forloop.first %}<div class="row resultFirstLine">{% endif %}
-          <div class="col-sm-3 text-center">
-            <a href="{% url 'results' item.code %}">
-              <img class="img-responsive" src="{{ item.image_small_url }}" alt="{{ item.product_name_fr }}">
-            </a>
-            <p>{{ item.product_name_fr }}</p>
-              {% if forloop.counter|divisibleby:'4' %}<div class="clearfix"></div>{% endif %}
-          </div>
-        {% if forloop.counter|divisibleby:4 %}</div><div class="row">{% endif %}
-        {% if forloop.last %}</div>{% endif %}
-      {% endif %}
-    {% endfor %}
+          <div class="col-sm-9 text-center not_found_message">
+          <p>Quelle misère..., le produit demandé est introuvable</p>
+          <p>Essayez de vérifier l'orthographe du produit recherché</p>
+        </div>
+      </div>
+    {% else %}
+      {% if forloop.first %}<div class="row resultFirstLine">{% endif %}
+        <div class="col-sm-3 text-center">
+          <a href="{% url 'results' item.code %}">
+            <img class="img-responsive" src="{{ item.image_small_url }}" alt="{{ item.product_name_fr }}">
+          </a>
+          <p>{{ item.product_name_fr }}</p>
+            {% if forloop.counter|divisibleby:'4' %}<div class="clearfix"></div>{% endif %}
+        </div>
+      {% if forloop.counter|divisibleby:4 %}</div><div class="row">{% endif %}
+      {% if forloop.last %}</div>{% endif %}
+    {% endif %}
+  {% endfor %}
   </body>
 
-
-
 {% endblock %}
-
-
-
-
-    {% comment %}
-
-    {% endcomment %}
-

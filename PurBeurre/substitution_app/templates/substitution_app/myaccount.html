@@ -5,7 +5,7 @@
 {% block body %}
 
   {% block css %}
-    <link rel="stylesheet" type="text/css" href="{% static 'substitution_app/css/creative.css' %}" /> <!-- MODIFIED -->
+    <link rel="stylesheet" type="text/css" href="{% static 'substitution_app/css/creative.css' %}" />
   {% endblock %}
 
     <header class="accounthead text-center text-white d-flex">
@@ -22,5 +22,16 @@
           </div>
         </div>
       </header>
+
+      <body>
+          <div class="row resultFirstLine">
+            <div class="col-lg-6">
+                <button type="submit" class="btn btn-primary btn-sm  pull-right"><span class="glyphicon glyphicon-eye-open"></span>Adresse mail :</button>
+            </div>
+            <div class="col-lg-6 pull-left">
+              <p class="mailfont">{{ usermail }}</p>
+            </div>
+          </div>
+      </body>
 
 {% endblock %}

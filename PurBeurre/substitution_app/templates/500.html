@@ -1,10 +1,29 @@
 {% extends 'base.html' %}
+
 {% load static %}
 
 {% block body %}
-    <h1>Oups...!</h1>
-    <p><em>Un problème est survenu :)</em></p>
-    <p>Il semblerait que l'API d'OpenfoodFact ne soit pas disponible pour le moment.</p>
-    <p>Veuillez réessayer ultérieurement</p>
-    <iframe src="https://www.youtube.com/watch?v=C-u5WLJ9Yk4" frameborder="0" allowfullscreen></iframe>
+
+  {% block css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'substitution_app/css/creative.css' %}" />
+  {% endblock %}
+
+    <header class="accounthead text-center text-white d-flex">
+        <div class="container my-auto">
+          <div class="row">
+            <div class="col-lg-10 mx-auto">
+              <h1 class="text-uppercase">
+                <strong>Oups...!</strong>
+              </h1>
+              <hr>
+              <h1 class="text-uppercase">
+                <strong>Un problème est survenu :)</strong>
+                <strong>Veuillez réessayer ultérieurement</strong>
+              </h1>
+            </div>
+          </div>
+        </div>
+      </header>
+
 {% endblock %}
+

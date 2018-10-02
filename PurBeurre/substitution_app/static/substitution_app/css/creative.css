@@ -1,5 +1,60 @@
 /* PurBeurre\static\css\creative.css */
 
+/* header legal */
+header.legal {
+  padding-top: 10rem; /* margin-top: 100px */
+  padding-bottom: calc(10rem - 56px);
+  background-image: url("../img/mentionsLegales.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-position: center center;
+  /*-webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover; */ 
+  background-size: cover;
+}
+
+header.legal hr {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+header.legal h1 {
+  font-size: 2rem;
+  color: #C45525;
+  text-shadow: 2px 2px #212529;
+}
+
+header.legal p {
+  font-weight: 300;
+  color: #C45525;
+  text-shadow: 2px 2px #212529;
+}
+
+@media (min-width: 768px) {
+  header.legal p {
+    font-size: 2rem;
+    color: #C45525;
+    text-shadow: 2px 2px #212529;
+  }
+}
+
+@media (min-width: 992px) {
+  header.legal {
+    /*height: 100vh;*/
+    min-height: 650px;
+  }
+  header.legal h1 {
+    font-size: 3rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  header.legal h1 {
+    font-size: 3rem;
+  }
+}
+
 /* header myaccount */
 header.accounthead {
   padding-top: 10rem; /* margin-top: 100px */
@@ -595,6 +650,22 @@ header.masthead p {
   padding-bottom: 5rem;
 }
 
-.test {
-  text-align: center;
+.displtext {
+  font-size: 2.5rem;
+}
+
+.mailfont {
+  font-size: 1.5rem;
+}
+
+.mentions {
+  font-size: 1.5rem;
+}
+
+.legalfont {
+  font-size: 1rem;
+}
+
+.buttonLegal {
+  font-size: 1.5rem;
 }

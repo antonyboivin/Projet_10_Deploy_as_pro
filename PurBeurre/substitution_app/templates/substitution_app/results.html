@@ -4,7 +4,7 @@
 
 
 {% block body %}
-  <link rel="stylesheet" type="text/css" href="{% static 'substitution_app/css/creative.css' %}" /> <!-- MODIFIED -->
+  <link rel="stylesheet" type="text/css" href="{% static 'substitution_app/css/creative.css' %}" />
 
   {% if user.is_authenticated %}
 
@@ -22,9 +22,11 @@
               <img class="img-responsive" src="{{ apiQuery.image_small_url }}" alt="{{ apiQuery.product_name_fr }}">
             </a>
             <strong>{{ apiQuery.product_name_fr }}</strong>
+            </h1>
             <hr>
             <h1 class="text-uppercase">
             <strong>par :</strong>
+            </h1>
           </div>
         </div>
       </div>
@@ -138,6 +140,3 @@
 {% endif %}    
 
 {% endblock %}
-
-
-
