@@ -94,8 +94,7 @@ def product_select(request):
         except:
             raise Http404("Erreur 404")
         else:
-            apiQuery = callapi.clean_the_openfoodfact_api_request(apiQuery)
-            
+            apiQuery = callapi.clean_the_openfoodfact_api_request(apiQuery)  
             if apiQuery:
 
                 return render(request, 'substitution_app/product_select.html',

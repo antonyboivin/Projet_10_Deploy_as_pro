@@ -1,56 +1,88 @@
 from django.contrib import auth
 from django.urls import reverse
 from django.test import TestCase
+from .models import ProductsA, UserProducts
+from .callapi import Callapi
 
 
-# At first, I check that all pages of the application are functional.
-class StatusCodePages(TestCase):
-    """
-        Class StatusCodePages ensures that all templates return a status code 200.
-    """
-    def setup(self):
-        """
-            The setup method contains :
-                self.usertest creates a user for the test requirements.
-        """
-        self.usertest = User.objects.create_user('usertest', 'usertest@test.com', 'usertest')
-        self.apiQuery = [{'nom':'nom du produit'}]
-        self.userQuery = 'un produit'
+# 
+
+class Userjourney(TestCase):
 
     def test_home_page(self):
+        """
+        As Lily I have to be able to access the site by entering the URL in my browser.
+        En tant que Lily je dois pouvoir accéder au site en rentrant l'URL dans mon navigateur.
+        """
         response = self.client.get(reverse('home page'))
         self.assertEqual(response.status_code, 200)
+
+    def test_search_for_product(self):
+        """
+        As Lily, I must be able to enter a product to substitute in a search field and validate.
+        En tant que Lily, je dois pouvoir entrer un produit à substituer dans un champ de recherche et valider.
+        """
+        userQuery = 'nutella'
+        apiQuery = [{'product_name_fr': 'Nutella', 
+                    'code': '3017620429484', 
+                    'nutrition_grade_fr': 'e', 
+                    'categories_hierarchy': ['fr:pates-a-tartiner'], 
+                    'categories': 'Desayunos,Untables,Untables dulces,Cremas para untar,Cremas de chocolate,Cremas a base de avellanas,Cremas de cacao y avellanas,Pâtes à tartiner', 
+                    'image_small_url': 'https://static.openfoodfacts.org/images/products/301/762/042/9484/front_fr.147.200.jpg'}]
+
+
+        response = self.client.post(reverse('product select'), {'apiQuery': apiQuery, 'userQuery' : userQuery})
+
+        self.assertEqual(response.status_code, 200)
     
-    def test_sign_up_page(self):
-        response = self.client.get(reverse('sign up'))
+    def test_display_products_research(self):
+        """
+        As Lily, I'm waiting for the app to show me all the products matching my search.
+        En tant que Lily, j'attends que l'application m'affiche tous les produits correspondant à ma recherche.
+        """
+        userQuery = 'nutella'
+        apiQuery = [{'product_name_fr': 'Nutella', 'code': '3017620429484', 'nutrition_grade_fr': 'e', 'categories_hierarchy': ['fr:pates-a-tartiner'], 'categories': 'Desayunos,Untables,Untables dulces,Cremas para untar,Cremas de chocolate,Cremas a base de avellanas,Cremas de cacao y avellanas,Pâtes à tartiner', 'image_small_url': 'https://static.openfoodfacts.org/images/products/301/762/042/9484/front_fr.147.200.jpg'}]
+
+
+        response = self.client.post(reverse('product select'), {'apiQuery': apiQuery, 'userQuery' : userQuery})
+
         self.assertEqual(response.status_code, 200)
 
-    def test_connection_page(self):
-        response = self.client.get(reverse('connection'))
+    def test_safe_products_display(self):
+        """
+        As Lily, when I chose the exact product to replace, I expect the application to offer me a new page of healthy products.
+        En tant que Lily, quand j'ai choisi précisément le produit a substituer, 
+        je m'attends à ce que l'application me propose une nouvelle page de produits sains.
+        """
+        pass
+
+    def test_product_display_page(self):
+        """
+        By clicking on a product, the app displays a product detail page with a link to the Open Food Facts website.
+        En cliquant sur un produit, l'application affiche une page de détail du produit 
+        comportant un lien vers le site d'Open Food Facts.
+        """
+        response = self.client.get(reverse('product display', kwargs={'code': '3017620429484'}))
         self.assertEqual(response.status_code, 200)
     
-    def test_deconnection_page(self):
-        response = self.client.get(reverse('deconnection'), follow=True)
-        self.assertEqual(response.status_code, 200)
- 
-    def test_my_account_page(self):
+    def test_my_account(self):
+        """
+        As Lily, I must be able to have space account.
+        En tant que Lily, je dois pouvoir avoir un espace compte.
+        """
         logged = self.client.login(username='usertest', password='usertest')
         if logged:
             response = self.client.get(reverse('my account'))
             self.assertEqual(response.status_code, 200)
             self.client.logout()
-
-    def test_product_select_page(self):
-
-        userQuery = 'nutella'
-        apiQuery = [{'product_name_fr': 'Nutella', 'code': '3017620429484',
-                     'nutrition_grade_fr': 'e', 'categories_hierarchy': ['fr:pates-a-tartiner'],
-                     'categories': 'Desayunos,Untables,Untables dulces,Cremas para untar,Cremas de chocolate,Cremas a base de avellanas,Cremas de cacao y avellanas,Pâtes à tartiner',
-                     'image_small_url': 'https://static.openfoodfacts.org/images/products/301/762/042/9484/front_fr.147.200.jpg'}]
-        response = self.client.post('/substitution_app/product_select/', {'apiQuery': apiQuery, 'userQuery' : userQuery})
-        self.assertEqual(response.status_code, 200)
-
-
-# 
-class CallTheApi(TestCase):
-    pass
+    
+    def test_my_products(self):
+        """
+        As Lily, I need to have access to a summary of all the products I have already substituted.
+        En tant que Lily, je dois pouvoir avoir accès à un récapitulatif de tous les produits que j'ai déjà substitué.
+        """
+        logged = self.client.login(username='usertest', password='usertest')
+        if logged:
+            response = self.client.get(reverse('my products'))
+            self.assertEqual(response.status_code, 200)
+            self.client.logout()

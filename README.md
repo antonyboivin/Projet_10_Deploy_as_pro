@@ -28,7 +28,7 @@ http://127.0.0.1:8000/substitution_app/home_page/
 
 ## Deployment
 
-The application is deployed on Heroku at : 
+The application is deployed on Heroku at : https://purbeurreantonyboivin.herokuapp.com/
 
 ## Authors
 
