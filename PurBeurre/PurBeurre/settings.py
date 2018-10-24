@@ -30,7 +30,7 @@ if os.environ.get('ENV') == 'PRODUCTION':
 else:
     DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'purbeurreantonyboivin.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'purbeurreantonyboivin.herokuapp.com', '178.128.252.25']
 
 
 # Application definition
@@ -55,7 +55,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    #'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'PurBeurre.urls'
@@ -94,11 +94,11 @@ WSGI_APPLICATION = 'PurBeurre.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql', # Adaptateur postgresql
+        'ENGINE': 'django.db.backends.postgresql_psycopg2', # Adaptateur postgresql
         'NAME': 'purbeurre', # Nom de la base de donnees
-        'USER': 'postgres', # Nom d'utilisateur
-        'PASSWORD': '',
-        'HOST': '',
+        'USER': 'anton', # Nom d'utilisateur
+        'PASSWORD': '0+0=LaTeteàT0t0',
+        'HOST': 'localhost',
         'PORT': '5432',
     }
 }
@@ -144,6 +144,7 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, 'substitution_app/static')
 ]
 
 
@@ -157,22 +158,22 @@ INTERNAL_IPS = ['127.0.0.1']
 # Redirection vers la vue de connection pour le décorateur @login_required
 LOGIN_URL = '/connection/'
 
-if os.environ.get('ENV') == 'PRODUCTION':
+#if os.environ.get('ENV') == 'PRODUCTION':
 
     # Static files settings
-    PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
-    STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 
     # Extra places for collectstatic to find static files.
-    STATICFILES_DIRS = (
-        os.path.join(PROJECT_ROOT, 'static'),
+STATICFILES_DIRS = (
+    os.path.join(PROJECT_ROOT, 'static'),
     )
 
     # Simplified static file serving.
     # https://warehouse.python.org/project/whitenoise/
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+    #STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
     
     
-    db_from_env = dj_database_url.config(conn_max_age=500)
-    DATABASES['default'].update(db_from_env)
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
