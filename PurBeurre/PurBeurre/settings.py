@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'debug_toolbar',
+    'django_cron',
 ]
 
 MIDDLEWARE = [
@@ -96,8 +97,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2', # Adaptateur postgresql
         'NAME': 'purbeurre', # Nom de la base de donnees
-        'USER': 'anton', # Nom d'utilisateur
-        'PASSWORD': '0+0=LaTeteàT0t0',
+        'USER': 'antony', # Nom d'utilisateur
+        'PASSWORD': '', # 0+0=LaTeteàT0t0
         'HOST': 'localhost',
         'PORT': '5432',
     }
@@ -177,3 +178,9 @@ STATICFILES_DIRS = (
     
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
+
+# Variables for Cron
+CRON_CLASSES = [
+    "substitution_app.my_cron_job.MyCronJob",
+    # ...
+]
