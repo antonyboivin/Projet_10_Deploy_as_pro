@@ -4,6 +4,7 @@ python:
 
 before_script:
   - pip install -r ./PurBeurre/requirements.txt
+  - source env/bin/activate
 
 env: DJANGO_SETTINGS_MODULE="purbeurre.settings"
 
