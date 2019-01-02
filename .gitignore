@@ -19,5 +19,7 @@ PurBeurre/substitution_app/__pycache__/tests.cpython-36.pyc
 PurBeurre/substitution_app/__pycache__/urls.cpython-36.pyc
 PurBeurre/substitution_app/__pycache__/views.cpython-36.pyc
 
+PurBeurre/PurBeurre/settings/production.py
+
 tools/
 Notes de projet.md
