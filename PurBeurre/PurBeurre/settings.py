@@ -30,7 +30,7 @@ if os.environ.get('ENV') == 'PRODUCTION':
 else:
     DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'purbeurreantonyboivin.herokuapp.com', '178.128.252.25']
+ALLOWED_HOSTS = ['127.0.0.1', 'purbeurreantonyboivin.herokuapp.com', '142.93.170.125']
 
 
 # Application definition
@@ -85,20 +85,13 @@ WSGI_APPLICATION = 'PurBeurre.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
-""",
-    'PurBeurre': {
-        'ENGINE': 'django.db.backends.mysql', # Adaptateur postgresql
-        'NAME': 'offProject', # Nom de la base de donnees
-        'USER': 'root', # Nom d'utilisateur
-        'PASSWORD': 'toor',
-    },"""
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2', # Adaptateur postgresql
-        'NAME': 'purbeurre', # Nom de la base de donnees
-        'USER': 'antony', # Nom d'utilisateur
-        'PASSWORD': '', # 0+0=LaTeteàT0t0
+        'NAME': 'purbeurre',
+        'USER': 'antonyb',
+        'PASSWORD': '0+0=LaTeteàT0T0',
         'HOST': 'localhost',
         'PORT': '5432',
     }
