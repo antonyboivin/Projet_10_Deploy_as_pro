@@ -7,7 +7,7 @@ import requests
 
 from django.http import Http404
 
-
+#a effacer
 class Callapi():
     """
         Class Callapi groups the methods necessary to interact with the OFF API.
