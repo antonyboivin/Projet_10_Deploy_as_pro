@@ -15,4 +15,4 @@ services:
   - postgresql
 
 script:
-  - python ./manage.py test
+  - python ./PurBeurre/manage.py test
