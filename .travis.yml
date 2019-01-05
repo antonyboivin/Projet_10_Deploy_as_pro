@@ -15,4 +15,4 @@ services:
   - postgresql
 
 script:
-  - python /home/travis/build/antonyboivin/Projet_10_Deploy_as_pro/PurBeurre/manage.py test
+  - python ./home/travis/build/antonyboivin/Projet_10_Deploy_as_pro/PurBeurre/manage.py test
