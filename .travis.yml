@@ -15,4 +15,5 @@ services:
   - postgresql
 
 script:
-  - python manage.py test
+  - python /PurBeurre/travTest.py
+
