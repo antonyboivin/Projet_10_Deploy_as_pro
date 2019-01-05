@@ -3,7 +3,7 @@ python:
   - '3.6'
 
 before_script:
-  - pip install -r ./PurBeurre/PurBeurre/requirements.txt
+  - pip install -r ./PurBeurre/requirements.txt
 
 branches:
   only:
@@ -15,6 +15,6 @@ services:
   - postgresql
 
 script:
-  - python ./PurBeurre/PurBeurre/travTest.py
-  - python ./PurBeurre/PurBeurre/manage.py test
+  - python ./PurBeurre/travTest.py
+  - python .PurBeurre/manage.py test
 
