@@ -4,7 +4,10 @@ python:
 
 before_script:
   - pip install -r ./PurBeurre/requirements.txt
-  - source env/bin/activate
+
+branches:
+  only:
+    - staging  
 
 env: DJANGO_SETTINGS_MODULE="purbeurre.settings"
 
