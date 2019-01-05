@@ -16,5 +16,5 @@ services:
 
 script:
   - python ./PurBeurre/travTest.py
-  - python .PurBeurre/manage.py test
+  - python ./PurBeurre/manage.py test
 
