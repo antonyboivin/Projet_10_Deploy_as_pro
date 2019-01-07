@@ -9,10 +9,11 @@ branches:
   only:
     - staging  
 
-env: DJANGO_SETTINGS_MODULE="purbeurre.settings"
+env: DJANGO_SETTINGS_MODULE="PurBeurre.settings.travis"
 
 services:
   - postgresql
 
 script:
-  - ./manage.py test
+  - python ./PurBeurre/manage.py test
+
