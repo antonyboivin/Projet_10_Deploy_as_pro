@@ -16,4 +16,3 @@ services:
 
 script:
   - python ./PurBeurre/manage.py test
-
