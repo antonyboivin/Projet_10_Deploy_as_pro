@@ -5,20 +5,17 @@ from django.http import Http404
 from .forms import SignUpForm, ConnectionForm
 from .models import ProductsA, UserProducts
 from .callapi import Callapi
+from sentry_sdk import capture_message
 import json
 
-# sentri
-from sentry_sdk import capture_message
-#import logging
-#logger = logging.getLogger(__name__)
-
+#test sentry
+import logging
+logger = logging.getLogger(__name__)
 
 def home_page(request):
     """
         Return the home page of the application
     """
-    #Sentry
-    capture_message('New user')
     return render(request, 'substitution_app/home_page.html')
 
 
@@ -95,7 +92,7 @@ def product_select(request):
         try:
             userQuery = request.POST.get('userQuery')
             #sentry
-            capture_message('nouvelle recherche : ', userQuery)
+            logger.info('Tralalère', exc_info=True, extra={'request': userQuery,})            
             apiQuery = callapi.request_the_openfoodfact_api(userQuery)
 
         except:
