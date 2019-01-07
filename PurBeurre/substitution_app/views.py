@@ -8,8 +8,9 @@ from .callapi import Callapi
 import json
 
 # sentri
-import logging
-logger = logging.getLogger(__name__)
+from sentry_sdk import capture_message
+#import logging
+#logger = logging.getLogger(__name__)
 
 
 def home_page(request):
@@ -17,7 +18,7 @@ def home_page(request):
         Return the home page of the application
     """
     #Sentry
-    logger.info('New search', exc_info=True, extra={'request': request,})
+    capture_message('New user')
     return render(request, 'substitution_app/home_page.html')
 
 
@@ -93,6 +94,8 @@ def product_select(request):
     if request.method == 'POST':
         try:
             userQuery = request.POST.get('userQuery')
+            #sentry
+            capture_message('nouvelle recherche : ', userQuery)
             apiQuery = callapi.request_the_openfoodfact_api(userQuery)
 
         except:
