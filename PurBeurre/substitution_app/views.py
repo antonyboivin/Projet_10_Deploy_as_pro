@@ -7,13 +7,17 @@ from .models import ProductsA, UserProducts
 from .callapi import Callapi
 import json
 
-
+# sentri
+import logging
+logger = logging.getLogger(__name__)
 
 
 def home_page(request):
     """
         Return the home page of the application
     """
+    #Sentry
+    logger.info('New search', exc_info=True, extra={'request': request,})
     return render(request, 'substitution_app/home_page.html')
 
 
