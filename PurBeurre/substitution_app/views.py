@@ -92,7 +92,11 @@ def product_select(request):
         try:
             userQuery = request.POST.get('userQuery')
             #sentry
-            logger.info('Tralalère', exc_info=True, extra={'request': userQuery,})            
+            logger.info('Tralalère', exc_info=True, extra={'userQuery': userQuery,})
+            logger.error('There was some crazy error', exc_info=True, extra={
+                # Optionally pass a request and we'll grab any information we can
+                'request': request,
+            })            
             apiQuery = callapi.request_the_openfoodfact_api(userQuery)
 
         except:
