@@ -1,14 +1,16 @@
 from django_cron import CronJobBase, Schedule
 
 class MyCronJob(CronJobBase):
-    RUN_EVERY_MINS = 1 # every minutes
+    RUN_EVERY_MINS = 5 # every 5 minutes
 
     schedule = Schedule(run_every_mins=RUN_EVERY_MINS)
     code = 'substitution_app.my_cron_job'
 
     def do(self):
         # do your thing here
-        print('Hello you !')
+        print('Hello print !')
+        return('Hello return !')
+
         """
         f= open("guru99.txt","w+")
         for i in range(10):
