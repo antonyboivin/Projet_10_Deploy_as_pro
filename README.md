@@ -1,6 +1,6 @@
-# Projet_8_Django_Ratatouille
+# Projet_10_Deploy_as_a_pro
 
-The Ratatouille project is a DA-Python project. It consists of the creation of a website to find a healthy substitute for a food considered "too fat, too sweet, too salty".
+Deploy as a pro project is a DA-Python project. It consists of a deployment of a website on the Digital Ocean platform. This project includes the use of continuous integration, monitoring and automation tools for Cron stains.
 
 ## Getting Started
 
@@ -11,7 +11,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 A step by step series of examples that tell you have to get a development env running
 
-Clone the repository : https://github.com/antonyboivin/Projet_8_Django_Ratatouille
+Clone the repository : https://github.com/antonyboivin/Projet_10_Deploy_as_pro.git
 
 Install all the necessary packages :
 ```
@@ -23,12 +23,12 @@ python manage.py runserver
 ```  
 The site is then searchable from the browser with the URL:
 ```
-http://127.0.0.1:8000/substitution_app/home_page/
+http://127.0.0.1:8000/
 ```
 
 ## Deployment
 
-The application is deployed on Heroku at : https://purbeurreantonyboivin.herokuapp.com/
+The application is deployed on Digital Ocean at : http://142.93.170.125/
 
 ## Authors
 
