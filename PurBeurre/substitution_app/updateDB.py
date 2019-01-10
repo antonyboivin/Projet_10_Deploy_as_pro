@@ -121,8 +121,6 @@ class Update_database():
             response = self.request_openfoofact_API(page, page_size='1000')
             clean_response = self.clean_updated_products(response)
             self.save_updated_products(clean_response)
-            print(response['page'])
-            print(clean_response[1])
             page += 1
       
 
