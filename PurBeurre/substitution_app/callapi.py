@@ -106,7 +106,7 @@ class Callapi():
 
     def request_for_substitution_products_in_openfoodfact_api(self, apiquery):
         """
-            Queries the API with filters such as the natural score
+            Queries the API with filters such as the nutritional score
             to find substitutes in the same product category of the user's request.
         """
 
