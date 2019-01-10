@@ -9,7 +9,4 @@ class MyCronJob(CronJobBase):
 
     def do(self):
         # do your thing here
-        update = Update_database()
-        response = update.request_openfoofact_API()
-        nbrePage = update.pages_number_determination(response)
-        test = update.request_updated_products(response, nbrePage)
+        pass

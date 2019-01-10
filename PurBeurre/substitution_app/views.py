@@ -5,17 +5,26 @@ from django.http import Http404
 from .forms import SignUpForm, ConnectionForm
 from .models import ProductsA, UserProducts
 from .callapi import Callapi
-from sentry_sdk import capture_message
+#from sentry_sdk import capture_message
 import json
 
 #test sentry
 import logging
 logger = logging.getLogger(__name__)
 
+
+from .updateDB import Update_database
+
 def home_page(request):
     """
         Return the home page of the application
     """
+    print("It's work !")
+    update = Update_database()
+    response = update.request_openfoofact_API()
+    nbrePage = update.pages_number_determination(response)
+    update_BD = update.request_updated_products(response, nbrePage)
+    print("The end !")
     return render(request, 'substitution_app/home_page.html')
 
 
