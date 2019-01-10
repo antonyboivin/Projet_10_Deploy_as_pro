@@ -15,9 +15,6 @@ def home_page(request):
     """
         Return the home page of the application
     """
-    update = Update_database()
-    test = update.clean_db()
-    print(test)
     return render(request, 'substitution_app/home_page.html')
 
 

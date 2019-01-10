@@ -8,10 +8,7 @@ class MyCronJob(CronJobBase):
 
     def do(self):
         # do your thing here
-        print('Hello you !')
-        """
-        f= open("guru99.txt","w+")
-        for i in range(10):
-            f.write("This is line %d\r\n" % (i+1))
-        f.close()
-        """
+        update = Update_database()
+        response = update.request_openfoofact_API()
+        nbrePage = update.pages_number_determination(response)
+        test = update.request_updated_products(response, nbrePage)
