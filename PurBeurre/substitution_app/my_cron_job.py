@@ -12,4 +12,4 @@ class MyCronJob(CronJobBase):
         response = update.request_openfoofact_API()
         nbrePage = update.pages_number_determination(response)
         update_BD = update.request_updated_products(response, nbrePage)
-
+        print("End of task")
