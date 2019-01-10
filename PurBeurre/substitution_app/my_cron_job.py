@@ -1,4 +1,5 @@
 from django_cron import CronJobBase, Schedule
+from .updateDB import Update_database
 
 class MyCronJob(CronJobBase):
     RUN_EVERY_MINS = 1 # every minutes

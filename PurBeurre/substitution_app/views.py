@@ -7,9 +7,6 @@ from .models import ProductsA, UserProducts
 from .callapi import Callapi
 import json
 
-from .updateDB import Update_database
-
-
 
 def home_page(request):
     """
