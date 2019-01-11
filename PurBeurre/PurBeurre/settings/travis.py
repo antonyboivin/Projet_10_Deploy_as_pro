@@ -1,4 +1,7 @@
 from . import *
+"""
+This configuration file allows Travis to create a database for these tests.
+"""
 
 DATABASES = {
     'default': {
