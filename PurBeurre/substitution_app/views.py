@@ -5,11 +5,10 @@ from django.http import Http404
 from .forms import SignUpForm, ConnectionForm
 from .models import ProductsA, UserProducts
 from .callapi import Callapi
-#from sentry_sdk import capture_message
 import json
-
-#test sentry
 import logging
+
+
 logger = logging.getLogger(__name__)
 
 
@@ -93,16 +92,14 @@ def product_select(request):
     callapi = Callapi()
     if request.method == 'POST':
         try:
-            userQuery = request.POST.get('userQuery')
-            #sentry
-            logger.info('Tralalère', exc_info=True, extra={'userQuery': userQuery,})
-            logger.error('There was some crazy error', exc_info=True, extra={
-                # Optionally pass a request and we'll grab any information we can
-                'request': request,
-            })            
+            userQuery = request.POST.get('userQuery')           
             apiQuery = callapi.request_the_openfoodfact_api(userQuery)
 
         except:
+            # Raise a sentry logs
+            logger.error('Product selection error', exc_info=True, extra={
+                'request': request,
+            })
             raise Http404("Erreur 404")
         else:
             apiQuery = callapi.clean_the_openfoodfact_api_request(apiQuery)  
@@ -125,6 +122,10 @@ def results(request, code):
     apiQuery = callapi.barcode_clean_the_oppenfoodfact_api_request(apiQuery)
 
     if apiQuery == 404:
+        # Raise a sentry logs
+        logger.error('Results raise 404 error', exc_info=True, extra={
+            'request': request,
+        })
         raise Http404("Erreur 404")
     else:
         # Search first for a substitute in the database
@@ -184,6 +185,10 @@ def product_display(request, code):
     callapi = Callapi()
     apiQuery = callapi.barcode_request_the_openfoodfact_api(code)
     if apiQuery == 404:
+        # Raise a sentry logs
+        logger.error('Product display raise 404 error', exc_info=True, extra={
+            'request': request,
+        })
         raise Http404("Erreur 404")
     else:
         apiQuery = callapi.barcode_clean_the_oppenfoodfact_api_request(apiQuery)
