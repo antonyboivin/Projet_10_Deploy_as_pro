@@ -10,7 +10,10 @@ class MyCronJob(CronJobBase):
     def do(self):
         print("Start a task")
         update = Update_database()
+        print("First ok")
         response = update.request_openfoofact_API()
+        print("Seconde ok")
         nbrePage = update.pages_number_determination(response)
+        print("Third ok")
         update_BD = update.request_updated_products(response, nbrePage)
         print("End of task")
