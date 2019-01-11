@@ -8,6 +8,7 @@ class MyCronJob(CronJobBase):
     code = 'substitution_app.my_cron_job'
 
     def do(self):
+        print("Start a task")
         update = Update_database()
         response = update.request_openfoofact_API()
         nbrePage = update.pages_number_determination(response)
