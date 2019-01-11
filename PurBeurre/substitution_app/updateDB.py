@@ -100,7 +100,7 @@ class Update_database():
             This method saves the cleaned data in the database.
         """
         for products in clean_response:
-            products_save = ProductsA.objects.create(
+            ProductsA.objects.create(
                 code=products['code'],
                 url=products['url'],
                 product_name=products['product_name'],
@@ -116,8 +116,8 @@ class Update_database():
             # Nettoie la réponse de requete.
             # Enregistre les produits dans la base de données.
         page = 1
+        self.clean_db()
         while page <= page_number:
-            self.clean_db()
             response = self.request_openfoofact_API(page, page_size='1000')
             clean_response = self.clean_updated_products(response)
             self.save_updated_products(clean_response)
